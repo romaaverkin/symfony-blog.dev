@@ -129,6 +129,7 @@ class Term
     public function __construct()
     {
         $this->pages = new ArrayCollection();
+        $this->created = new \DateTime();
     }
 
     /**

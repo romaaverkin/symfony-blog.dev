@@ -42,6 +42,10 @@ class Page
      */
     private $created;
 
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+    }
 
     /**
      * Get id
