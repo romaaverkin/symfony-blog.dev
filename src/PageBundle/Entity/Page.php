@@ -31,6 +31,10 @@ class Page
      */
     private $body;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="TermBundle\Entity\Term", inversedBy="pages")
+     * @ORM\JoinColumn(name="term_id", referencedColumnName="id")
+     */
     private $category;
 
     /**
@@ -119,5 +123,29 @@ class Page
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \TermBundle\Entity\Term $category
+     *
+     * @return Page
+     */
+    public function setCategory(\TermBundle\Entity\Term $category = null)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return \TermBundle\Entity\Term
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

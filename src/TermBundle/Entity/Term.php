@@ -2,6 +2,7 @@
 
 namespace TermBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +37,10 @@ class Term
      */
     private $created;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PageBundle\Entity\Page", mappedBy="category")
+     */
+    private $pages;
 
     /**
      * Get id
@@ -117,5 +122,46 @@ class Term
     public function getCreated()
     {
         return $this->created;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->pages = new ArrayCollection();
+    }
+
+    /**
+     * Add page
+     *
+     * @param \PageBundle\Entity\Page $page
+     *
+     * @return Term
+     */
+    public function addPage(\PageBundle\Entity\Page $page)
+    {
+        $this->pages[] = $page;
+
+        return $this;
+    }
+
+    /**
+     * Remove page
+     *
+     * @param \PageBundle\Entity\Page $page
+     */
+    public function removePage(\PageBundle\Entity\Page $page)
+    {
+        $this->pages->removeElement($page);
+    }
+
+    /**
+     * Get pages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPages()
+    {
+        return $this->pages;
     }
 }
